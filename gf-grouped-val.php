@@ -5,7 +5,7 @@ Plugin Name: Gravity Forms Grouped Validation
 Plugin URI: https://github.com/zaus/gf-grouped-val
 Description: Conditional validation for grouped fields
 Author: zaus
-Version: 0.4
+Version: 0.4.1
 Author URI: http://drzaus.com
 Changelog:
 	0.1	initial
@@ -115,6 +115,7 @@ class GravityFormsGroupedValidation {
 			if($group_invalid) {
 				// must set overall validation to false at least once
 				$validation_result['is_valid'] = false;
+				$groupid = str_replace('_', ' ', trim($i, '-'));
 
 				foreach($group as $k => $id) {
 					$fields[$k]->failed_validation = true;
@@ -126,9 +127,9 @@ class GravityFormsGroupedValidation {
 					else $msg = $this->err_msg[self::DEFAULT_MSG_INDEX];
 
 					if(!empty($fields[$k]->validation_message))
-						$fields[$k]->validation_message .= '  ' . sprintf($msg, $i);
+						$fields[$k]->validation_message .= '  ' . sprintf($msg, $groupid);
 					else
-						$fields[$k]->validation_message = sprintf($msg, $i);
+						$fields[$k]->validation_message = sprintf($msg, $groupid);
 				}
 			}
 		}
