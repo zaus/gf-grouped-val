@@ -1,0 +1,3 @@
+{
+	"Tecline Validate": "Een veld opgeven en groep %s is verplicht."
+}
